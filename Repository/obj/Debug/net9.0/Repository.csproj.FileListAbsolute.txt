@@ -1,0 +1,16 @@
+C:\Users\ACER\Desktop\ComStore\Repository\bin\Debug\net9.0\Repository.deps.json
+C:\Users\ACER\Desktop\ComStore\Repository\bin\Debug\net9.0\Repository.dll
+C:\Users\ACER\Desktop\ComStore\Repository\bin\Debug\net9.0\Repository.pdb
+C:\Users\ACER\Desktop\ComStore\Repository\bin\Debug\net9.0\Data.dll
+C:\Users\ACER\Desktop\ComStore\Repository\bin\Debug\net9.0\Data.pdb
+C:\Users\ACER\Desktop\ComStore\Repository\obj\Debug\net9.0\Repository.csproj.AssemblyReference.cache
+C:\Users\ACER\Desktop\ComStore\Repository\obj\Debug\net9.0\Repository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ACER\Desktop\ComStore\Repository\obj\Debug\net9.0\Repository.AssemblyInfoInputs.cache
+C:\Users\ACER\Desktop\ComStore\Repository\obj\Debug\net9.0\Repository.AssemblyInfo.cs
+C:\Users\ACER\Desktop\ComStore\Repository\obj\Debug\net9.0\Repository.csproj.CoreCompileInputs.cache
+C:\Users\ACER\Desktop\ComStore\Repository\obj\Debug\net9.0\Repository.sourcelink.json
+C:\Users\ACER\Desktop\ComStore\Repository\obj\Debug\net9.0\Repository.csproj.Up2Date
+C:\Users\ACER\Desktop\ComStore\Repository\obj\Debug\net9.0\Repository.dll
+C:\Users\ACER\Desktop\ComStore\Repository\obj\Debug\net9.0\refint\Repository.dll
+C:\Users\ACER\Desktop\ComStore\Repository\obj\Debug\net9.0\Repository.pdb
+C:\Users\ACER\Desktop\ComStore\Repository\obj\Debug\net9.0\ref\Repository.dll
