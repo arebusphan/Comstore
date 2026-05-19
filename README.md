@@ -106,51 +106,123 @@
 
 ### Bước 4: Thiết kế API chi tiết
 
+#### User APIs
+
+- `POST /api/users/register`
+  - Tạo tài khoản người dùng mới.
+  - Request body:
+    - `fullName`
+    - `email`
+    - `password`
+    - `phone` (tùy chọn)
+    - `address` (tùy chọn)
+  - Response:
+    - `userId`
+    - `email`
+    - `createdAt`
+- `POST /api/users/login`
+  - Xác thực người dùng.
+  - Request body:
+    - `email`
+    - `password`
+  - Response:
+    - `token`
+    - `userId`
+    - `email`
+- `GET /api/users/{id}`
+  - Lấy thông tin người dùng.
+  - Response:
+    - `id`, `fullName`, `email`, `phone`, `address`.
+- `PUT /api/users/{id}`
+  - Cập nhật thông tin người dùng.
+  - Request body:
+    - `fullName`, `phone`, `address`.
+- `DELETE /api/users/{id}`
+  - Xóa tài khoản người dùng (administrative / soft delete nếu cần).
+
+#### Category APIs
+
+- `GET /api/categories`
+  - Lấy danh sách danh mục sản phẩm.
+- `GET /api/categories/{id}`
+  - Lấy chi tiết danh mục.
+- `POST /api/categories`
+  - Tạo danh mục mới.
+  - Request body:
+    - `name`, `description`.
+- `PUT /api/categories/{id}`
+  - Cập nhật danh mục.
+- `DELETE /api/categories/{id}`
+  - Xóa danh mục.
+
 #### Product APIs
 
 - `GET /api/products`
-  - Lấy danh sách sản phẩm, hỗ trợ lọc theo loại, thương hiệu, giá, CPU, RAM.
+  - Lấy danh sách sản phẩm, hỗ trợ lọc theo categoryId, brand, priceRange, cpu, ram, gpu, search text.
+  - Hỗ trợ paging: `page`, `pageSize`.
 - `GET /api/products/{id}`
   - Lấy chi tiết một sản phẩm.
+- `POST /api/products`
+  - Tạo sản phẩm mới.
+  - Request body:
+    - `name`, `categoryId`, `brand`, `price`, `cpu`, `ram`, `gpu`, `storage`, `screenSize`, `resolution`, `battery`, `description`, `imageUrl`, `stockQuantity`.
+- `PUT /api/products/{id}`
+  - Cập nhật sản phẩm.
+- `DELETE /api/products/{id}`
+  - Xóa sản phẩm.
 - `GET /api/products/compare?ids=1,2,3`
   - So sánh nhiều sản phẩm cùng lúc.
 
 #### AI tư vấn
 
 - `POST /api/ai-advice`
+  - Gửi yêu cầu tư vấn AI.
   - Request body:
+    - `userId` (tùy chọn nếu đã đăng nhập)
     - `usageType`: học tập, lập trình, gaming, đồ họa, văn phòng.
     - `budget`: ngân sách tối đa.
-    - `preferences`: thương hiệu, kích thước màn hình, hiệu năng.
+    - `preferredBrand` (tùy chọn)
+    - `priority`: `performance`, `portability`, `budget`.
+    - `additionalNotes` (tùy chọn).
   - Response:
-    - Danh sách sản phẩm gợi ý.
-    - Cấu hình đề xuất.
-    - Giải thích vì sao chọn.
+    - `recommendedProducts`: danh sách sản phẩm gợi ý.
+    - `explanation`: lý do chọn.
+    - `topConfiguration`: cấu hình sản phẩm đề xuất.
+- `GET /api/ai-advice/history?userId=123`
+  - Lấy lịch sử yêu cầu tư vấn AI của người dùng.
 
 #### Order APIs
 
 - `POST /api/orders`
   - Tạo đơn hàng mới từ giỏ hàng.
+  - Request body:
+    - `userId`, `shippingAddress`, `paymentMethod`, `items`.
+    - `items`: mảng `{ productId, quantity }`.
+  - Response:
+    - `orderId`, `orderDate`, `status`, `totalAmount`.
 - `GET /api/orders/{id}`
-  - Lấy thông tin chi tiết đơn hàng.
+  - Lấy chi tiết đơn hàng.
 - `GET /api/orders?userId=123`
   - Lấy lịch sử đơn hàng người dùng.
+- `PUT /api/orders/{id}`
+  - Cập nhật trạng thái đơn hàng (ví dụ: `Pending`, `Confirmed`, `Shipped`, `Completed`).
+- `DELETE /api/orders/{id}`
+  - Hủy đơn hàng nếu chưa xử lý.
 
 #### Review APIs
 
 - `POST /api/reviews`
   - Thêm đánh giá sản phẩm.
+  - Request body:
+    - `productId`, `userId`, `rating`, `comment`.
 - `GET /api/products/{id}/reviews`
   - Lấy đánh giá cho sản phẩm.
-
-#### User APIs (nếu cần)
-
-- `POST /api/users/register`
-  - Đăng ký người dùng.
-- `POST /api/users/login`
-  - Đăng nhập.
-- `GET /api/users/{id}`
-  - Lấy thông tin người dùng.
+- `GET /api/users/{id}/reviews`
+  - Lấy đánh giá của người dùng.
+- `PUT /api/reviews/{id}`
+  - Cập nhật đánh giá.
+- `DELETE /api/reviews/{id}`
+  - Xóa đánh giá.
 
 ### Bước 5: Xây dựng tính năng AI tư vấn
 
